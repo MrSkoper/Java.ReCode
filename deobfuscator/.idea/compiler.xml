@@ -7,9 +7,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="core" />
-        <module name="decompiler" />
         <module name="cli" />
+        <module name="deobfuscator" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="cli" target="1.5" />
+      <module name="core" target="7" />
+      <module name="deobfuscator" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>
