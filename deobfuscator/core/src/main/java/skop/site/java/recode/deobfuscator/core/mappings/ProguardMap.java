@@ -2,6 +2,7 @@ package skop.site.java.recode.deobfuscator.core.mappings;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.Arrays;
 
 public class ProguardMap implements MapInterface {
     
@@ -48,7 +49,9 @@ public class ProguardMap implements MapInterface {
             int length;
             char[] chars = new char[1];
             while ((length = reader.read(chars)) != -1) {
-                if (isToken(chars[0]))
+                if (isToken(chars[0])) {
+                    tokenBuffer = new char[0];
+                }
             }
         }
         
@@ -62,13 +65,14 @@ public class ProguardMap implements MapInterface {
                 
                 char[] chars = tokenEnum.getChars();
                 if (!tokenEnum.isLong()) return character == chars[0];
+    
+                tokenBuffer = Arrays.copyOf(tokenBuffer, tokenBuffer.length + 1);
+                tokenBuffer[tokenBuffer.length - 1] = character;
+
                 
-                char[] buffer = new char[tokenBuffer.length + 1];
-                System.arraycopy(tokenBuffer, 0, buffer, 0, tokenBuffer.length);
-                buffer[tokenBuffer.length] = character;
-                tokenBuffer = buffer;
-                
-                return tokenBuffer == chars;
+                if (tokenBuffer.length == chars.length) {
+                    return tokenBuffer == chars;
+                }
             }
             
             return false;
