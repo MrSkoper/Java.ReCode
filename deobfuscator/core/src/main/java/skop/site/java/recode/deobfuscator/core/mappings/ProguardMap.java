@@ -1,56 +1,84 @@
 package skop.site.java.recode.deobfuscator.core.mappings;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ProguardMap implements MapInterface {
     
-    public List<ClassToken> tokenClasses = new ArrayList<>();
+    protected enum TokenEnum {
+        DIRECTION("->", 0),
+        
+        DELIMITER(":", 1),
+        EXPANDER(":", 2),
+        
+        COMPONENT("\t", 3);
     
-    public void parse (Reader reader) throws IOException {
-        try (BufferedReader bufferedReader = new BufferedReader(reader)) {
-            StringBuilder stringBuilder = new StringBuilder();
+        private final char[] chars;
+        private final int id;
+        
+        TokenEnum (String string, int id) {
+            this.chars = string.toCharArray();
+            this.id = id;
+        }
     
-            int length;
-            char[] buffer = new char[1];
-            
-            while ((length = bufferedReader.read(buffer)) != -1) {
-                stringBuilder.append(buffer).setLength(length);
-                
-            }
+        public int getId () {
+            return id;
+        }
+        
+        public char[] getChars () {
+            return chars;
+        }
+        
+        public boolean isLong () {
+            return chars.length > 1;
         }
     }
-
-    private static final String DIRECTION_TOKEN = "->";
-    private static final String METHOD_DELIMITER_TOKEN = ":";
     
-    private static class ClassToken {
+    public static class ParserStream {
         
-        private String name;
-        private String direct;
+        private final Reader reader;
         
-        private VariableToken[] variables;
-        private MethodToken[] methods;
+        public ParserStream (Reader reader) {
+            this.reader = reader;
+        }
         
-    }
+        private StringBuffer stringBuffer = new StringBuffer();
+        
+        private void loop () throws IOException {
+            int length;
+            char[] chars = new char[1];
+            while ((length = reader.read(chars)) != -1) {
+                if (isToken(chars[0]))
+            }
+        }
+        
+        
+        private TokenEnum token;
+        private char[] tokenBuffer = new char[0];
+        
+        private boolean isToken (final char character) {
+            for (TokenEnum tokenEnum: TokenEnum.values()) {
+                this.token = tokenEnum;
+                
+                char[] chars = tokenEnum.getChars();
+                if (!tokenEnum.isLong()) return character == chars[0];
+                
+                char[] buffer = new char[tokenBuffer.length + 1];
+                System.arraycopy(tokenBuffer, 0, buffer, 0, tokenBuffer.length);
+                buffer[tokenBuffer.length] = character;
+                tokenBuffer = buffer;
+                
+                return tokenBuffer == chars;
+            }
+            
+            return false;
+        }
+        
+        public TokenEnum readToken () throws IOException {
+            
     
-    private static class VariableToken {
-        
-        private String name;
-        private Class<?> type;
-        private String direct;
-        
-    }
-    
-    private static class MethodToken {
-        
-        private String name;
-        private Class<?> rType; // Return Type
-        private int line;
-        private int column;
+            return new TokenEnum();
+        }
         
     }
     
