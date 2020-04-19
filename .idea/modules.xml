@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ReCode.iml" filepath="$PROJECT_DIR$/ReCode.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/ReCode.iml" filepath="$PROJECT_DIR$/.idea/ReCode.iml" />
     </modules>
   </component>
 </project>
