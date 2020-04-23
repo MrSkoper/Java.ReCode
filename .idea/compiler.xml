@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <annotationProcessing>
-      <profile name="Maven default annotation processors profile" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <module name="core" />
-        <module name="decompiler" />
-        <module name="cli" />
-      </profile>
-    </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="cli" target="1.5" />
+      <module name="core" target="7" />
+      <module name="decompiler" target="1.5" />
+      <module name="deobfuscator" target="1.5" />
       <module name="project" target="1.5" />
       <module name="ReCode" target="1.5" />
     </bytecodeTargetLevel>
