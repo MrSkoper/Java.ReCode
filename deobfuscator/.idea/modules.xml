@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/cli/cli.iml" filepath="$PROJECT_DIR$/cli/cli.iml" />
       <module fileurl="file://$PROJECT_DIR$/core/core.iml" filepath="$PROJECT_DIR$/core/core.iml" />
-      <module fileurl="file://$PROJECT_DIR$/deobfuscator.iml" filepath="$PROJECT_DIR$/deobfuscator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/deobfuscator.iml" filepath="$PROJECT_DIR$/.idea/deobfuscator.iml" />
     </modules>
   </component>
 </project>

@@ -16,4 +16,13 @@
 
     </description>
 
+    <packaging>jar</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>site.skop.java.recode</groupId>
+            <artifactId>core</artifactId>
+        </dependency>
+    </dependencies>
+
 </project>
